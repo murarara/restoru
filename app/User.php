@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'joined_at', 'department_id', 'flg_admin'
     ];
 
     /**
@@ -36,4 +36,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    /**
+     * *:1のモデル
+     */
+    public function department(){
+        return $this->belongsTo(Department::class);
+    }
 }
