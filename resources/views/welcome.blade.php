@@ -1,77 +1,45 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-
-            <div class="content">
-                
-            <!--@include('calendars.month', ['dates' => $dates])-->
+@section('content')
+    @if(Auth::check())
+        @if(Auth::user()->flg_admin==1)
+            <div class="center jumbotron">
+                <div class="text-center">
+                    <h3>管理者ページです</h3>
+                </div>
+            </div>
+        @else
+            <div class="center jumbotron">
+                <div class="text-center">
+                    <h3>風邪で有休消化はもったいない！<br>
+                        どうせ休むなら思いっきり楽しんで、リフレッシュしましょう！<br>
+                        リフレッシュして帰ってきたら、また仕事に一生懸命取り組みましょう。<br>
+                        仕事も遊びも全力で！
+                    </h3>
+                </div>
+            </div>
             @include('mainpage.show', ['dates' => $dates])
-            
+        @endif
+    @else
+        <div class="center jumbotron">
+            <div class="text-center">
+                <h3>風邪で有休消化はもったいない！<br>
+                    どうせ休むなら思いっきり楽しんで、リフレッシュしましょう！<br>
+                    リフレッシュして帰ってきたら、また仕事に一生懸命取り組みましょう。<br>
+                    仕事も遊びも全力で！
+                </h3>
             </div>
         </div>
-    </body>
-</html>
+        
+        <div class="center jumbotron">
+            <div class="text-center">
+                <h3>-----------------<br>
+                    レストルでは、有給取得日の登録が簡単にできます！<br>
+                    有給取得日を他の人と共有しましょう。
+                </h3>
+            </div>
+        </div>
+    @endif
+@endsection
+
+<!--@include('calendars.month', ['dates' => $dates])-->
