@@ -15,13 +15,17 @@ class CalendarController extends Controller
      */
     public function index()
     {
-        $test = 'testです。';
-        $dates = $this->getDates(5, 2020);
-        $holidays = $this->getHolidays(2020);
+        $currentMonth = (int)date('m');
+        $currentYear = (int)date('Y');
+        $dates = $this->getDates($currentMonth, $currentYear);
+        $holidays = $this->getHolidays($currentYear);
+        $all = $this->getAllOfYear($currentYear);
         
         return view('welcome',[
-            'test' => $test,
-            'dates' => $dates,
+            'currentMonth' => $currentMonth,
+            'currentYear' => $currentYear,
+            'allDates' => $all,
+            // 'dates' => $dates,
             'holidays' => $holidays,
         ]);
     }
@@ -122,6 +126,22 @@ class CalendarController extends Controller
             $dates[] = $date->copy();
         }
         return $dates;
+    }
+    
+    /**
+     * カレンダーのデータを作成する
+     */
+    public function getAllOfYear($currentYear)
+    {
+        $all = array();
+        for($i = 4; $i <= 15; $i++) {
+            $j = $i;
+            if($i >= 13) {
+                $j = $i - 3;
+            }
+            array_push($all, $this->getDates($j, $currentYear));
+        }
+        return $all;
     }
     
     /**

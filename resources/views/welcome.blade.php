@@ -18,7 +18,8 @@
                     </h3>
                 </div>
             </div>
-            @include('mainpage.show', ['dates' => $dates])
+            @include('calendars.month', ['allDates' => $allDates])
+            <!--@include('mainpages.calendar', ['month' => $month ?? null, 'year' => $year ?? null])-->
         @endif
     @else
         <div class="center jumbotron">
@@ -42,4 +43,4 @@
     @endif
 @endsection
 
-<!--@include('calendars.month', ['dates' => $dates])-->
+{{-- @include('calendars.month', ['dates' => $dates]) --}}
