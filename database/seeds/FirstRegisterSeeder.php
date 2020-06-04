@@ -16,16 +16,6 @@ class FirstRegisterSeeder extends Seeder
            'created_at' => new DateTime(),
            'updated_at' => new DateTime()
         ]);
-        DB::table('users')->insert([
-           'name' => '管理者',
-           'email' => 'admin@admin.com',
-           'password' => '1234567890',
-           'joined_at' => '2020_06_03',
-           'department_id' => '1',
-           'flg_admin' => '1',
-           'created_at' => new DateTime(),
-           'updated_at' => new DateTime()
-        ]);
         
         DB::table('departments')->insert([
            'name' => '営業本部',
@@ -38,5 +28,28 @@ class FirstRegisterSeeder extends Seeder
            'created_at' => new DateTime(),
            'updated_at' => new DateTime()
         ]);
+
+        DB::table('users')->insert([
+           'name' => '管理者',
+           'email' => 'admin@admin.com',
+           'password' => Hash::make('1234567890'),
+           'joined_at' => '2020_06_03',
+           'department_id' => '1',
+           'flg_admin' => '1',
+           'created_at' => new DateTime(),
+           'updated_at' => new DateTime()
+        ]);
+        
+        DB::table('users')->insert([
+           'name' => '一般',
+           'email' => 'test@test.com',
+           'password' => Hash::make('1111'),
+           'joined_at' => '2020_06_03',
+           'department_id' => '1',
+           'flg_admin' => '0',
+           'created_at' => new DateTime(),
+           'updated_at' => new DateTime()
+        ]);
+        
     }
 }
