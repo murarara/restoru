@@ -59,7 +59,7 @@
                 /**
                  * 日本の祝日
                  */
-                use \Yasumi\Yasumi;
+                use azuyalabs/yasumi;
 
                 $holidays = Yasumi::create('Japan', (string)$currentYear, 'ja_JP');
                 foreach($holidays as $holiday) {

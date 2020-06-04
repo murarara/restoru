@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('calendar.test');
 });
+
+// Route::resource('calendars', 'CalendarController', ['only' => 'show']);
+Route::get('calendars', 'Auth\CalendarController@getDates')->name('calendars.month');
+Route::get('calendar.show', function () {
+    return view('calendar.test');
+});
