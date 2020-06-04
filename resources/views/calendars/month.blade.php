@@ -1,3 +1,5 @@
+<h1>{{ $test }}</h1>
+
 <form action="#" method="GET">
   <input class="btn btn-warning" type="submit" value="やばい">
 <table class="table table-bordered">
@@ -9,12 +11,12 @@
     </tr>
   </thead>
   <tbody>
-    @foreach ($dates as $date)
+    @foreach ($dates ?? array() as $date)
     @if ($date->dayOfWeek == 0)
     <tr>
     @endif
       <td
-        @if ($date->month != $currentMonth)
+        @if ($date->month != ($currentMonth = 5))
         class="bg-secondary"
         @endif
         @foreach ($holidays as $holiday)

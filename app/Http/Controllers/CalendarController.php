@@ -15,7 +15,15 @@ class CalendarController extends Controller
      */
     public function index()
     {
-        //
+        $test = 'testです。';
+        $dates = $this->getDates(5, 2020);
+        $holidays = $this->getHolidays(2020);
+        
+        return view('welcome',[
+            'test' => $test,
+            'dates' => $dates,
+            'holidays' => $holidays,
+        ]);
     }
 
     /**
@@ -40,14 +48,19 @@ class CalendarController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * 多分ここで表示ビュー返せばいい気がする
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $dates = calendars.month;
+        $dates = $this->getDates;
+        
+        //viewを返しちゃえば表示できるんじゃね？
+        return view('calendars.month',[
+                'dates' => $dates,
+            ]);
     }
 
     /**

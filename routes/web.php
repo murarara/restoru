@@ -11,12 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('calendar.test');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
-// Route::resource('calendars', 'CalendarController', ['only' => 'show']);
-Route::get('calendars', 'Auth\CalendarController@getDates')->name('calendars.month');
-Route::get('calendar.show', function () {
+Route::resource('/', 'CalendarController', ['only' => 'index']);
+
+//Route::controller('calendars.getDates', 'CalendarController@getDates');
+/*Route::get('calendar.show', function () {
     return view('calendar.test');
 });
