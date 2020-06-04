@@ -11,7 +11,7 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 {{-- ログインページへのリンク --}}
-                <li class="nav-item"><a href="#" class="nav-link">ログイン</a></li>
+                <li class="nav-item">{!! link_to_route('login', 'ログイン', [], ['class' => 'nav-link']) !!}</li>
             </ul>
         </div>
     </nav>
