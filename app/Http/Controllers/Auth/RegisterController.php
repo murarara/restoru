@@ -53,6 +53,9 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'joined_at' => ['required'],
+            'department_id' => ['required'],
+            'flg_admin' => ['required'],
         ]);
     }
 
@@ -64,10 +67,28 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $password = generatePassword();
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'password' => Hash::make($password),
+            'joined_at' => $data['joined_at'],
+            'department_id' => $data['department_id'],
+            'flg_admin' => $data['flg_admin'],
         ]);
     }
+    
+    //8桁のランダムパスワード
+    private function generatePassword() {
+        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $count = mb_strlen($chars);
+        for ($i = 0, $result = ''; $i < 8; $i++) {
+            $index = rand(0, $count - 1);
+            $result .= mb_substr($chars, $index, 1);
+        }
+        return $result;
+    }
+
+
 }
