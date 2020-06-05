@@ -13,12 +13,6 @@
   }
 </style>
 
-{{--
-@foreach ($holidays['2020'] as $holiday)
-    {{$holiday->getname()}}
-@endforeach
---}
-
 <ul class="nav nav-tabs" role="tablist">
   
   @for($i = 4; $i <= 15; $i++)
@@ -57,12 +51,25 @@
         <tr>
         @endif
           <td
-            @if ($date->month != $i)
-            class="bg-secondary"
-            @endif
+            <?php
+            foreach($holidays as $holidaysOfYear) {
+              foreach($holidaysOfYear as $holiday){
+                if (($date->month != $i) || $date->format('Y-m-d') == (string)$holiday || $date->isWeekend()) {
+                  echo 'class="bg-secondary"';
+                  break;
+                }
+              }
+            }
+            ?>
           >
-    
-          <input type="checkbox" name="dates[]" class="check_box" id="{{ $date->month.$date->day }}" value="{{ $date->month.$date->day }}" />
+          <input type="checkbox" name="dates[]" class="check_box" 
+          <?php 
+            if (!(($date->month != $i) || $date->format('Y-m-d') == (string)$holiday || $date->isWeekend())) {
+                  echo 'id="'.$date->month.$date->day.'" value="'.$date->month.$date->day.'" ';
+            }
+          ?>
+          />
+            
           <label class="label" for="{{ $date->month.$date->day }}">{{ $date->day }}</label>
           </td>
         @if ($date->dayOfWeek == 6)
