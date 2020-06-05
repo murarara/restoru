@@ -70,6 +70,10 @@
           />
             
           <label class="label" for="{{ $date->month.$date->day }}">{{ $date->day }}</label>
+          <br>
+          <!-- paid_vacationsに入っていれば表示する -->
+          <!-- ↓ $date->format('Y-m-d')と$paid_vacationsのdateが一緒ならば表示してね -->
+          <i class="fas fa-user-circle"></i>
           </td>
         @if ($date->dayOfWeek == 6)
         </tr>

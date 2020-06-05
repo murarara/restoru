@@ -18,6 +18,8 @@
                     </h3>
                 </div>
             </div>
+            {{--var_dump($users)--}}
+            {{--var_dump($paid_vacations)--}}
             {!!Form::open(['route'=>'paidVacation.store'])!!}
             @include('calendars.month', ['allDates' => $allDates])
             {!! Form::close() !!}

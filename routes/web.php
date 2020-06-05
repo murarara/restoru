@@ -24,4 +24,5 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 //カレンダー
 Route::resource('/', 'CalendarController', ['only' => 'index']);
-Route::resource('paidVacation', 'PaidVacationsController', ['only' => 'store']);
+Route::resource('paidVacation', 'PaidVacationsController', ['only' => ['store']]);
+// Route::get('/', 'PaidVacationsController@index');

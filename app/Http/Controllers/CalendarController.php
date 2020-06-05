@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use \Yasumi\Yasumi;
 use Carbon\Carbon;
+use App\User;
+use App\PaidVacation;
 
 class CalendarController extends Controller
 {
@@ -21,11 +23,17 @@ class CalendarController extends Controller
         $holidays = $this->getHolidays($currentYear);
         $all = $this->getAllOfYear($currentYear);
         
+        //既に有給入れてる人たちのでーた
+        $users = User::all();
+        $paidVacations = PaidVacation::all();
+        
         return view('welcome',[
             'currentMonth' => $currentMonth,
             'currentYear' => $currentYear,
             'allDates' => $all,
             // 'dates' => $dates,
+            'users' => $users,
+            'paid_vacations' => $paidVacations,
             'holidays' => $holidays,
         ]);
     }
