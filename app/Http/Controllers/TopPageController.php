@@ -17,7 +17,11 @@ class TopPageController extends Controller
         $department_id_loop = $departments->pluck('name', 'id');
         if (Auth::check()) { // 認証済みの場合
             if (Auth::user()->flg_admin==1){
-                return view('auth.register', compact('department_id_loop'));
+                if(Auth::user()->flg_first_login==0){
+                    return view('users.reset_password');
+                } else {
+                    return view('auth.register', compact('department_id_loop'));
+                }
             }
             else{
                 
