@@ -65,7 +65,7 @@
           <input type="checkbox" name="dates[]" class="check_box" 
           <?php 
             if (!(($date->month != $i) || $date->format('Y-m-d') == (string)$holiday || $date->isWeekend())) {
-                  echo 'id="'.$date->month.$date->day.'" value="'.$date->month.$date->day.'" ';
+                  echo 'id="'.$date->month.$date->day.'" value="'.$date->format('Y-m-d').'" ';
             }
           ?>
           />
