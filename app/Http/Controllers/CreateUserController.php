@@ -61,6 +61,7 @@ class CreateUserController extends Controller
         $user->save();
         
         return redirect('/?id=' . $password);
+    
     }
 
     /**
