@@ -114,11 +114,13 @@ class CalendarController extends Controller
     {
         $dateStr = sprintf('%04d-%02d-01', $currentYear, $currentMonth);
         $date = new Carbon($dateStr);
+        $addDay = ($date->copy()->endOfMonth()->isSunday()) || ($date->copy()->endOfMonth()->isMonday()) ? 7 : 0;
         // カレンダーを四角形にするため、前月となる左上の隙間用のデータを入れるためずらす
         $date->subDay($date->dayOfWeek);
         // 同上。右下の隙間のための計算。
-        $count = 31 + $date->dayOfWeek;
+        $count = 31 + $addDay + $date->dayOfWeek;
         $count = ceil($count / 7) * 7;
+        
         $dates = [];
     
         for ($i = 0; $i < $count; $i++, $date->addDay()) {
@@ -126,6 +128,8 @@ class CalendarController extends Controller
             $dates[] = $date->copy();
         }
         return $dates;
+        
+        
     }
     
     /**

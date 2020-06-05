@@ -45,18 +45,7 @@
     @foreach ($allDates ?? array() as $dates)
     <div id="{{$i < 13 ? 'month'.$i : 'month'.($i - 12)}}" class="tab-pane fade {{$i == 4 ? 'show active' : ''}}" role="tabpanel" aria-labelledby="{{$i < 13 ? 'month'.$i.'-tab' : 'month'.($i - 12).'-tab'}}">
       <!--ここにカレンダー-->
-      {{$i}}
-      <?php $i++; ?>
-    </div>
-    @endforeach
-  </div>
-  
-  <div class="tab-pane fade @if($i == 4) active show @endif" 
-  id="month @if($i < 13) {{$i++}} @else {{($i++) - 12}} @endif" 
-  role="tabpanel" 
-  aria-labelledby="@if($i < 13) {{$i}} @else {{$i - 12}} @endif -tab">
-
-    <table class="table table-bordered">
+      <table class="table table-bordered">
       <thead>
         <tr>
           @foreach (['日', '月', '火', '水', '木', '金', '土'] as $dayOfWeek)
@@ -65,12 +54,12 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($dates ?? array() as $date)
+        @foreach ($dates as $date)
         @if ($date->dayOfWeek == 0)
         <tr>
         @endif
           <td
-            @if ($date->month != $currentMonth ?? 4)
+            @if ($date->month != $i)
             class="bg-secondary"
             @endif
             @foreach ($holidays as $holiday)
@@ -89,6 +78,21 @@
         @endforeach
       </tbody>
     </table>
+
+      
+    </div>
+    <?php $i++; 
+      if($i >= 13){
+        $i-12;
+      }?>
+    @endforeach
+  </div>
+  
+  <div class="tab-pane fade @if($i == 4) active show @endif" 
+  id="month @if($i < 13) {{$i++}} @else {{($i++) - 12}} @endif" 
+  role="tabpanel" 
+  aria-labelledby="@if($i < 13) {{$i}} @else {{$i - 12}} @endif -tab">
+
   </div>
   
   <!-- ここまでループ -->
