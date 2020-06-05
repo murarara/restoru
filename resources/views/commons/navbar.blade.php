@@ -11,6 +11,8 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 @if (Auth::check())
+                    {{-- パスワード変更へのリンク --}}
+                    <li class="nav-item">{!! link_to_route('reset_page', 'パスワード変更', [], ['class' => 'nav-link']) !!}</li>
                     
                     {{-- ログアウトへのリンク --}}
                     <li class="nav-item">{!! link_to_route('logout.get', 'ログアウト', [], ['class' => 'nav-link']) !!}</li>

@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Department;
 
+use App\User;
+use Auth;
+
+use Illuminate\Support\Facades\Hash;
+
 class TopPageController extends Controller
 {
     public function index(){
@@ -19,5 +24,27 @@ class TopPageController extends Controller
             }
         }
         return view('welcome');
+    }
+    
+    public function reset_page(){
+        return view('users.reset_password');
+    }
+    
+    public function reset_password(Request $request){
+        //dd($request->all());
+        $this->validate($request, [
+            'password' => ['required','string','min:8','confirmed'],
+            //'password_confirmation' => ['required','string','min:8','confirmed', 'same::password'],
+        ]);
+        
+        $user = User::find(Auth::user()->id);
+        
+        $user->password = Hash::make($request->password);
+        //$user->password_confirmation = Hash::make($request->password_confirmation);
+
+        $user->save();
+        
+        return redirect('/');
+    
     }
 }

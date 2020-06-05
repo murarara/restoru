@@ -26,3 +26,9 @@ Route::get('signup', 'Auth\RegisterController@showRegistrationForm')->name('sign
 //Route::post('signup', 'Auth\RegisterController@register')->name('signup.post');
 
 Route::post('signup', 'CreateUserController@store')->name('signup.post');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('reset_page', 'TopPageController@reset_page')->name('reset_page');
+    Route::post('reset_password', 'TopPageController@reset_password')->name('reset_password');
+});
+
