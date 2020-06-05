@@ -38,7 +38,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('guest');
+        $this->middleware('guest');
     }
 
     /**
@@ -52,9 +52,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'joined_at' => ['required'],
-            'department_id' => ['required'],
-            'flg_admin' => ['required'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
@@ -66,28 +64,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $password = $this->generatePassword();
-        
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($password),
-            'joined_at' => $data['joined_at'],
-            'department_id' => $data['department_id'],
-            'flg_admin' => $data['flg_admin'],
-        ]);
+            'password' => Hash::make($d]);
     }
-    
-    //8桁のランダムパスワード
-    private function generatePassword() {
-        $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        $count = mb_strlen($chars);
-        for ($i = 0, $result = ''; $i < 8; $i++) {
-            $index = rand(0, $count - 1);
-            $result .= mb_substr($chars, $index, 1);
-        }
-        return $result;
-    }
-
-
 }
