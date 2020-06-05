@@ -13,6 +13,7 @@
 
 Route::get('/', 'TopPageController@index')->name('index');
 
+
 // 認証
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 
@@ -32,3 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('reset_password', 'TopPageController@reset_password')->name('reset_password');
 });
 
+//カレンダー
+Route::resource('/', 'CalendarController', ['only' => 'index']);
+Route::resource('paidVacation', 'PaidVacationsController', ['only' => ['store']]);
+// Route::get('/', 'PaidVacationsController@index');
