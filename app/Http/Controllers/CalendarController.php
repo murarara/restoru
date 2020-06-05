@@ -138,12 +138,14 @@ class CalendarController extends Controller
     public function getAllOfYear($currentYear)
     {
         $all = array();
+        $year = $currentYear;
         for($i = 4; $i <= 15; $i++) {
             $j = $i;
             if($i >= 13) {
-                $j = $i - 3;
+                $j = $i - 12;
+                $year = $currentYear + 1;
             }
-            array_push($all, $this->getDates($j, $currentYear));
+            array_push($all, $this->getDates($j, $year));
         }
         return $all;
     }
@@ -153,7 +155,8 @@ class CalendarController extends Controller
      */
     public function getHolidays($currentYear)
     {
-        $holidays = Yasumi::create('Japan', (string)$currentYear, 'ja_JP');
+        $holidays[(string)$currentYear] = Yasumi::create('Japan', (string)$currentYear, 'ja_JP');
+        $holidays[(string)($currentYear+1)] = Yasumi::create('Japan', (string)($currentYear+1), 'ja_JP');
     
         return $holidays;
     

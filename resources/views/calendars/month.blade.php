@@ -13,13 +13,11 @@
   }
 </style>
 
-
-  {{--
-  @if($i == 4) active show @endif
-  month 
-  @if($i < 13) {{$i++}} @else {{($i++) - 12}} @endif
-  @if($i < 13) {{$i}} @else {{$i - 12}} @endif -tab
-  --}}
+{{--
+@foreach ($holidays['2020'] as $holiday)
+    {{$holiday->getname()}}
+@endforeach
+--}
 
 <ul class="nav nav-tabs" role="tablist">
   
@@ -62,11 +60,6 @@
             @if ($date->month != $i)
             class="bg-secondary"
             @endif
-            @foreach ($holidays as $holiday)
-            @if ($date === $holiday)
-            class="bg-warning"
-            @endif
-          @endforeach
           >
     
           <input type="checkbox" name="dates[]" class="check_box" id="{{ $date->month.$date->day }}" value="{{ $date->month.$date->day }}" />
@@ -83,7 +76,7 @@
     </div>
     <?php $i++; 
       if($i >= 13){
-        $i-12;
+        $i -= 12;
       }?>
     @endforeach
   </div>
