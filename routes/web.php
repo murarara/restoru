@@ -30,5 +30,7 @@ Route::post('signup', 'CreateUserController@store')->name('signup.post');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('reset_page', 'TopPageController@reset_page')->name('reset_page');
     Route::post('reset_password', 'TopPageController@reset_password')->name('reset_password');
+    Route::get('change_department_page', 'TopPageController@change_department_page')->name('change_department_page');
+    Route::post('change_department', 'TopPageController@change_department')->name('change_department');
 });
 
