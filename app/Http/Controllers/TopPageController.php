@@ -28,7 +28,8 @@ class TopPageController extends Controller
                 if(Auth::user()->flg_first_login==0){
                     return view('users.reset_password');
                 } else {
-                    return view('welcome');
+                    return redirect('/main'); // カレンダーを強制的に表示
+                    //return view('welcome');
                 }
             }
         }

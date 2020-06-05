@@ -34,6 +34,7 @@ Route::group(['middleware' => 'auth'], function () {
 });
 
 //カレンダー
-Route::resource('/', 'CalendarController', ['only' => 'index']);
+// Route::resource('/', 'CalendarController', ['only' => 'index']);
+Route::resource('/main', 'CalendarController', ['only' => 'index']);
 Route::resource('paidVacation', 'PaidVacationsController', ['only' => ['store']]);
 // Route::get('/', 'PaidVacationsController@index');
