@@ -1,13 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="text-center">
-        <h1>ユーザー登録</h1>
-    </div>
 
     <div class="row">
         <div class="col-sm-6 offset-sm-3">
-
+            
+            @if(isset($_GET['id']) == false)
+            
+            <div class="text-center">
+                <h1>ユーザー登録</h1>
+            </div>
+            
             {!! Form::open(['route' => 'signup.post']) !!}
                 <div class="form-group">
                     {!! Form::label('name', 'Name') !!}
@@ -46,6 +49,22 @@
 
                 {!! Form::submit('Sign up', ['class' => 'btn btn-primary btn-block']) !!}
             {!! Form::close() !!}
+            
+            @else
+            
+            <div class="text-center">
+                <h1>ユーザー登録完了</h1>
+            </div>
+            
+            <h3>
+                発行したパスワードは {{ $_GET['id'] }} です！
+            </h3>
+            
+            <div class="text-center">
+                <a href="/" class="btn btn-primary">戻る</a>
+            </div>
+            
+            @endif
         </div>
     </div>
 @endsection
