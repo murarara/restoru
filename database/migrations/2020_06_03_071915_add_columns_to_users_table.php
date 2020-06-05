@@ -16,7 +16,7 @@ class AddColumnsToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->date('joined_at');
             $table->unsignedBigInteger('department_id');
-            $table->boolean('flg_admin');
+            $table->boolean('flg_admin')->default(false);
         });
     }
 

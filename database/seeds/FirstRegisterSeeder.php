@@ -28,6 +28,10 @@ class FirstRegisterSeeder extends Seeder
            'created_at' => new DateTime(),
            'updated_at' => new DateTime()
         ]);
+        
+
+        
+
 
         DB::table('users')->insert([
            'name' => '管理者',
