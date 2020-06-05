@@ -26,8 +26,7 @@
 </ul>
 
   <!-- ここまでループ -->
-{{-- <div class="tab-content" id="nav-tabContent"> --}}
-  <form action="#" method="GET">
+  
   <!-- ここからループ(12回) -->
   
   <?php $i = 4; ?>
@@ -97,4 +96,3 @@
   
   <!-- ここまでループ -->
   <input class="btn btn-warning" type="submit" value="登録">
-</form>

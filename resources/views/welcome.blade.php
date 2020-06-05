@@ -18,7 +18,9 @@
                     </h3>
                 </div>
             </div>
+            {!!Form::open(['route'=>'paidVacation.store'])!!}
             @include('calendars.month', ['allDates' => $allDates])
+            {!! Form::close() !!}
             <!--@include('mainpages.calendar', ['month' => $month ?? null, 'year' => $year ?? null])-->
         @endif
     @else
