@@ -13,7 +13,7 @@
     @if(Auth::check())
         <div class="row">
             <div class="col-3">
-                @include('コント名', [引き渡す値])
+                @include('mainpages.susume', ['posts'=>$posts])
             </div>
             <div class="col-9">
                 {{--var_dump($users)--}}
