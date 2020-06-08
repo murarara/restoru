@@ -43,3 +43,4 @@ Route::resource('/main', 'CalendarController', ['only' => 'index']);
 Route::resource('paidVacation', 'PaidVacationsController', ['only' => ['store']]);
 // Route::get('/', 'PaidVacationsController@index');
 
+Route::resource('susume', 'SusumeController', ['only' => 'destroy']);
