@@ -11,6 +11,36 @@
   .check_box:checked + .label {
     background-color: orange;
   }
+  td {
+    width: 14.28%;
+  }
+  .css-fukidashi {
+      padding: 0;
+      margin: 0;
+  }
+  .text {
+    position: relative;
+  }
+  .fukidashi {
+    width: 100%;
+    display: none;
+    border-radius: 5px;
+    background: #33cc99;
+    color: #fff;
+    font-weight: bold;
+  }
+  .fukidashi:after {
+    width: 100%;
+    margin-left: 10px;
+    border: solid transparent;
+    border-color: rgba(51, 204, 153, 0);
+    border-top-color: #33cc99;
+    pointer-events: none;
+    content: " ";
+  }
+  .text:hover + .fukidashi {
+    display: block;
+  }
 </style>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -61,19 +91,36 @@
             }
             ?>
           >
-          <input type="checkbox" name="dates[]" class="check_box" 
+          <input type="checkbox" name="dates[]" class="check_box"
           <?php 
             if (!(($date->month != $i) || $date->format('Y-m-d') == (string)$holiday || $date->isWeekend())) {
                   echo 'id="'.$date->month.$date->day.'" value="'.$date->format('Y-m-d').'" ';
             }
+            
+            foreach($users_paid_vacations as $users_paid_vacation) {
+                  if(!(($date->format('Y-m-d') != $users_paid_vacation->date) || $date->format('Y-m-d') == (string)$holiday || $date->isWeekend())) {
+                    echo 'disabled';
+                  }    
+            } 
+            
+    
           ?>
           />
             
           <label class="label" for="{{ $date->month.$date->day }}">{{ $date->day }}</label>
           <br>
-          <!-- paid_vacationsに入っていれば表示する -->
-          <!-- ↓ $date->format('Y-m-d')と$paid_vacationsのdateが一緒ならば表示してね -->
-          <i class="fas fa-user-circle"></i>
+
+         @foreach($paid_vacations as $paid_vacation)
+           @if($paid_vacation->date == $date->format('Y-m-d'))
+             <div class="css_fukidashi">
+              <p class="text">
+                <i class="fas fa-user-circle"></i>
+              </p>
+              <p class="fukidashi">{{ $paid_vacation->user->name }}</p>
+             </div>
+           @endif
+         @endforeach
+         
           </td>
         @if ($date->dayOfWeek == 6)
         </tr>
