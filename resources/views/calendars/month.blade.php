@@ -23,21 +23,14 @@
   }
   .fukidashi {
     width: 100%;
+    padding: 5px;
     display: none;
     border-radius: 5px;
     background: #33cc99;
     color: #fff;
     font-weight: bold;
   }
-  .fukidashi:after {
-    width: 100%;
-    margin-left: 10px;
-    border: solid transparent;
-    border-color: rgba(51, 204, 153, 0);
-    border-top-color: #33cc99;
-    pointer-events: none;
-    content: " ";
-  }
+
   .text:hover + .fukidashi {
     display: block;
   }
@@ -92,7 +85,7 @@
             ?>
           >
           <input type="checkbox" name="dates[]" class="check_box"
-          <?php 
+          <?php
             if (!(($date->month != $i) || $date->format('Y-m-d') == (string)$holiday || $date->isWeekend())) {
                   echo 'id="'.$date->month.$date->day.'" value="'.$date->format('Y-m-d').'" ';
             }
@@ -102,7 +95,6 @@
                     echo 'disabled';
                   }    
             } 
-            
     
           ?>
           />
