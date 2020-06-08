@@ -94,15 +94,25 @@
           >
           <input type="checkbox" name="dates[]" class="check_box"
           <?php
-            if (!(($date->month != $i) || $date->format('Y-m-d') == (string)$holiday || $date->isWeekend())) {
-                  echo 'id="'.$date->month.$date->day.'" value="'.$date->format('Y-m-d').'" ';
-            }
+            foreach($holidays as $holidaysOfYear) {
+              foreach($holidaysOfYear as $holiday){
+                if (!(($date->month != $i) || $date->format('Y-m-d') == (string)$holiday || $date->isWeekend())) {
+                      echo 'id="'.$date->month.$date->day.'" value="'.$date->format('Y-m-d').'" ';
+                }
+                
+                if (($date->month != $i) || $date->format('Y-m-d') == (string)$holiday || $date->isWeekend()) {
+                  echo 'disabled="disabled"';
+                  break;
+                }
+                
+                foreach($users_paid_vacations as $users_paid_vacation) {
+                      if(!(($date->format('Y-m-d') != $users_paid_vacation->date))) {
+                        echo 'disabled';
+                      }    
+                } 
             
-            foreach($users_paid_vacations as $users_paid_vacation) {
-                  if(!(($date->format('Y-m-d') != $users_paid_vacation->date) || $date->format('Y-m-d') == (string)$holiday || $date->isWeekend())) {
-                    echo 'disabled';
-                  }    
-            } 
+              }
+            }
     
           ?>
           />
