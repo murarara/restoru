@@ -70,20 +70,15 @@ class TopPageController extends Controller
     }
     
     public function change_department(Request $request){
-        // dd($request->all());
-
-        // $this->validate($request, [
-        //     'department_id' => 'required',
-        // ]);
-        
-        
         if (Auth::check()) {
             $this->validate($request, [
                 'email' => ['required','string'],
                 'department_id' => ['required','int'],
             ]);
             
-            
+            $user = User::find($request->email);
+            $user->department_id = $request->department_id;
+            $user->save();
         }
         
         return back();
