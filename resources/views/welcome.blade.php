@@ -14,7 +14,7 @@
         {{--var_dump($users)--}}
         {{--var_dump($paid_vacations)--}}
         {!!Form::open(['route'=>'paidVacation.store'])!!}
-        @include('calendars.month', ['allDates' => $allDates])
+        @include('calendars.month', ['allDates' => $allDates, 'posts'=>$posts])
         {!! Form::close() !!}
     @else
         <div class="center jumbotron">
