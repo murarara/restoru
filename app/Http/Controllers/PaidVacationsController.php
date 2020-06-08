@@ -44,12 +44,12 @@ class PaidVacationsController extends Controller
      */
     public function store(Request $request)
     {
-        foreach($request->dates as $date){
+        foreach((array)$request->dates as $date){
             $request->user()->paidVacation()->create([
                 'date' => $date,
             ]);
         }
-        
+
         return back();
     }
 

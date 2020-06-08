@@ -39,6 +39,7 @@ class TopPageController extends Controller
                     $dates = $this->getDates($currentMonth, $currentYear);
                     $holidays = $this->getHolidays($currentYear);
                     $all = $this->getAllOfYear($currentYear);
+                    $users_paid_vacations = PaidVacation::where('user_id', Auth::user()->id)->get();
                     
                     //既に有給入れてる人たちのでーた
                     $users = User::all();
@@ -51,6 +52,7 @@ class TopPageController extends Controller
                         // 'dates' => $dates,
                         'users' => $users,
                         'paid_vacations' => $paidVacations,
+                        'users_paid_vacations' => $users_paid_vacations,
                         'holidays' => $holidays,
                     ]);
                     
