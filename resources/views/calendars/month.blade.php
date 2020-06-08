@@ -65,6 +65,14 @@
   <div class="tab-content">
     @foreach ($allDates ?? array() as $dates)
     <div id="{{$i < 13 ? 'month'.$i : 'month'.($i - 12)}}" class="tab-pane fade {{$i == 4 ? 'show active' : ''}}" role="tabpanel" aria-labelledby="{{$i < 13 ? 'month'.$i.'-tab' : 'month'.($i - 12).'-tab'}}">
+      <!--ススメ-->
+      <ul class="list-group list-group-flush">
+          @foreach($posts as $post)
+            @if($post->month == ($i < 13 ? $i : ($i - 12)))
+              <li class="list-group-item">{{$post->content}}</li>
+            @endif
+          @endforeach
+      </ul>
       <!--ここにカレンダー-->
       <table class="table table-bordered">
       <thead>
