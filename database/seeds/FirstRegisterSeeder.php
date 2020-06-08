@@ -30,9 +30,6 @@ class FirstRegisterSeeder extends Seeder
         ]);
         
 
-        
-
-
         DB::table('users')->insert([
            'name' => '管理者',
            'email' => 'admin@admin.com',
@@ -40,6 +37,7 @@ class FirstRegisterSeeder extends Seeder
            'joined_at' => '2020_06_03',
            'department_id' => '1',
            'flg_admin' => '1',
+           'flg_first_login' => '1',
            'created_at' => new DateTime(),
            'updated_at' => new DateTime()
         ]);
@@ -51,6 +49,7 @@ class FirstRegisterSeeder extends Seeder
            'joined_at' => '2020_06_03',
            'department_id' => '1',
            'flg_admin' => '0',
+           'flg_first_login' => '1',
            'created_at' => new DateTime(),
            'updated_at' => new DateTime()
         ]);
