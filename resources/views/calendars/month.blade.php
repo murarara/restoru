@@ -22,6 +22,7 @@
     position: relative;
   }
   .fukidashi {
+    padding: 5px;
     width: 100%;
     display: none;
     border-radius: 5px;
@@ -122,7 +123,7 @@
               <p class="text">
                 <i class="fas fa-user-circle"></i>
               </p>
-              <p class="fukidashi">{{ $paid_vacation->user->name }}</p>
+              <p class="fukidashi">{{$paid_vacation->user->department->name}} {{ $paid_vacation->user->name }}</p>
              </div>
            @endif
          @endforeach
