@@ -45,6 +45,9 @@ class TopPageController extends Controller
                     $users = User::all();
                     $paidVacations = PaidVacation::all();
                     
+                    //ススメのでーた
+                    $posts = Post::all();
+                    
                     return view('welcome',[
                         'currentMonth' => $currentMonth,
                         'currentYear' => $currentYear,
@@ -53,6 +56,7 @@ class TopPageController extends Controller
                         'users' => $users,
                         'paid_vacations' => $paidVacations,
                         'holidays' => $holidays,
+                        'posts' => $posts
                     ]);
                     
                     //return redirect('/main'); // カレンダーを強制的に表示

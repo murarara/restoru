@@ -26,6 +26,15 @@
 </ul>
 
   <!-- ここまでループ -->
+  {{--!!
+  <ul class="list-group list-group-flush">
+      @foreach($posts as $post)
+        @if($post->month == ($i < 13 ? $i : ($i - 12)))
+          <li class="list-group-item">{{$post->content}}</li>
+        @endif
+      @endforeach
+  </ul>
+  !!--}}
   
   <!-- ここからループ(12回) -->
   

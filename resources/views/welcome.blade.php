@@ -11,17 +11,11 @@
         </div>
     </div>
     @if(Auth::check())
-        <div class="row">
-            <div class="col-3">
-                @include('mainpages.susume', ['posts'=>$posts])
-            </div>
-            <div class="col-9">
-                {{--var_dump($users)--}}
-                {{--var_dump($paid_vacations)--}}
-                {!!Form::open(['route'=>'paidVacation.store'])!!}
-                @include('calendars.month', ['allDates' => $allDates])
-                {!! Form::close() !!}
-            </div>
+        {{--var_dump($users)--}}
+        {{--var_dump($paid_vacations)--}}
+        {!!Form::open(['route'=>'paidVacation.store'])!!}
+        @include('calendars.month', ['allDates' => $allDates, 'posts'=>$posts])
+        {!! Form::close() !!}
     @else
         <div class="center jumbotron">
             <div class="text-center">
