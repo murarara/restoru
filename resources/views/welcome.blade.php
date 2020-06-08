@@ -10,22 +10,24 @@
             </h3>
         </div>
     </div>
-    
-    {{--var_dump($users)--}}
-    {{--var_dump($paid_vacations)--}}
-    {{!!Form::open(['route'=>'paidVacation.store'])!!}
-    @include('calendars.month', ['allDates' => $allDates])
-    {!! Form::close() !!}
-
-    
-    <div class="center jumbotron">
-        <div class="text-center">
-            <h3>-----------------<br>
-                レストルでは、有給取得日の登録が簡単にできます！<br>
-                有給取得日を他の人と共有しましょう。
-            </h3>
+    @if(Auth::check())
+        {{--var_dump($users)--}}
+        {{--var_dump($paid_vacations)--}}
+        {!!Form::open(['route'=>'paidVacation.store'])!!}
+        @include('calendars.month', ['allDates' => $allDates])
+        {!! Form::close() !!}
+    @else
+        <div class="center jumbotron">
+            <div class="text-center">
+                <h3>-----------------<br>
+                    レストルでは、有給取得日の登録が簡単にできます！<br>
+                    有給取得日を他の人と共有しましょう。
+                </h3>
+            </div>
         </div>
-    </div>
+    @endif    
+    
+    
 @endsection
 
 
