@@ -60,6 +60,8 @@ class TopPageController extends Controller
         $users = User::select('id', 'email')->get();
         $departments = Department::select('id', 'name')->get();
         
+        // $users = User::select('id', 'name', 'email', 'department_id')->get();
+        
         $user_id_loop = $users->pluck('email','id');
         $department_id_loop = $departments->pluck('name', 'id');
 
@@ -68,10 +70,22 @@ class TopPageController extends Controller
     }
     
     public function change_department(Request $request){
-        dd($request->all());
+        // dd($request->all());
 
-        $this->validate($request, [
-            'department_id' => 'required',
-        ]);
+        // $this->validate($request, [
+        //     'department_id' => 'required',
+        // ]);
+        
+        
+        if (Auth::check()) {
+            $this->validate($request, [
+                'email' => ['required','string'],
+                'department_id' => ['required','int'],
+            ]);
+            
+            
+        }
+        
+        return back();
     }
 }
