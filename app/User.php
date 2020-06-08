@@ -47,4 +47,8 @@ class User extends Authenticatable
     public function paidVacation(){
         return $this->hasMany(PaidVacation::class);
     }
+    
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
 }
