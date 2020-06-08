@@ -4,18 +4,13 @@
 <div class='row'>
     <div class='col-sm-12'>
         
-        {-- @include('admins.tab') --}
+        @include('admins.tab')
         
         <div class="text-center">
             <h1>有給取得のススメ</h1>
         </div>
         
-        <?php
-        $months = array();
-        for($monthi = 1; $monthi <= 12; $monthi++){
-            $months[(string)$monthi] = $monthi.'月';
-        }
-        ?>
+        
         {!! Form::open(['route' => 'susume_post']) !!}
 
             <!--登録する月-->
@@ -26,8 +21,8 @@
             
             <!--投稿内容-->
             <div class="form-group">
-                {!! Form::label('department_id', '部署') !!}
-                {!! Form::select('department_id', $department_id_loop, null, ['class' => 'form-control']) !!}
+                {!! Form::label('content', '内容') !!}
+                {!! Form::textarea('content', null, ['class' => 'form-control']) !!}
             </div>
 
 

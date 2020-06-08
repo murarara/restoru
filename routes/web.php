@@ -33,6 +33,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('reset_password', 'TopPageController@reset_password')->name('reset_password');
     Route::get('change_department_page', 'TopPageController@change_department_page')->name('change_department_page');
     Route::post('change_department', 'TopPageController@change_department')->name('change_department');
+    Route::get('susume_page', 'TopPageController@susume_page')->name('susume_page');
+    Route::post('susume_post', 'TopPageController@susume_post')->name('susume_post');
 });
 
 //カレンダー
@@ -40,3 +42,4 @@ Route::group(['middleware' => 'auth'], function () {
 Route::resource('/main', 'CalendarController', ['only' => 'index']);
 Route::resource('paidVacation', 'PaidVacationsController', ['only' => ['store']]);
 // Route::get('/', 'PaidVacationsController@index');
+

@@ -164,4 +164,21 @@ class TopPageController extends Controller
         
         return back();
     }
+    
+    public function susume_page(){
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
+        
+        $months = array();
+        for($monthi = 1; $monthi <= 12; $monthi++){
+            $months[(string)$monthi] = $monthi.'月';
+        }
+        
+        return view('admins.susume', ['user'=>$user, 'months'=>$months]);
+    }
+    
+    public function susume_post(){
+        return back();
+    }
 }
