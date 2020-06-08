@@ -14,6 +14,7 @@ use \Yasumi\Yasumi;
 use Carbon\Carbon;
 
 use App\PaidVacation;
+use App\Post;
 
 class TopPageController extends Controller
 {
@@ -45,6 +46,9 @@ class TopPageController extends Controller
                     $users = User::all();
                     $paidVacations = PaidVacation::all();
                     
+                    //ススメのでーた
+                    $posts = Post::all();
+                    
                     return view('welcome',[
                         'currentMonth' => $currentMonth,
                         'currentYear' => $currentYear,
@@ -54,6 +58,7 @@ class TopPageController extends Controller
                         'paid_vacations' => $paidVacations,
                         'users_paid_vacations' => $users_paid_vacations,
                         'holidays' => $holidays,
+                        'posts' => $posts
                     ]);
                     
                     //return redirect('/main'); // カレンダーを強制的に表示
@@ -162,6 +167,36 @@ class TopPageController extends Controller
             $user = User::find($request->email);
             $user->department_id = $request->department_id;
             $user->save();
+        }
+        
+        return back();
+    }
+
+    public function susume_page(){
+        if (Auth::check()) {
+            $user = Auth::user();
+        }
+        
+        $months = array();
+        for($monthi = 1; $monthi <= 12; $monthi++){
+            $months[(string)$monthi] = $monthi.'月';
+        }
+        
+        return view('admins.susume', ['user'=>$user, 'months'=>$months]);
+    }
+    
+    public function susume_post(Request $request){
+        
+        if (Auth::check()) {
+            $month = $request->month;
+            $content = $request->content;
+            $user_id = Auth::user()->id;
+            
+            Post::create([
+                    'user_id' => $user_id,
+                    'content' => $content,
+                    'month' => $month,
+                ]);
         }
         
         return back();
