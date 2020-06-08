@@ -57,18 +57,18 @@
         @if ($date->dayOfWeek == 0)
         <tr>
         @endif
-          <td
+          <td class="
             <?php
             foreach($holidays as $holidaysOfYear) {
               foreach($holidaysOfYear as $holiday){
                 if (($date->month != $i) || $date->format('Y-m-d') == (string)$holiday || $date->isWeekend()) {
-                  echo 'class="bg-secondary"';
+                  echo 'bg-secondary ';
                   break;
                 }
               }
             }
             ?>
-          >
+          ">
           <input type="checkbox" name="dates[]" class="check_box" 
           <?php 
             if (!(($date->month != $i) || $date->format('Y-m-d') == (string)$holiday || $date->isWeekend())) {
