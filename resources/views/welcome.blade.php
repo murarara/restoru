@@ -11,11 +11,17 @@
         </div>
     </div>
     @if(Auth::check())
-        {{--var_dump($users)--}}
-        {{--var_dump($paid_vacations)--}}
-        {!!Form::open(['route'=>'paidVacation.store'])!!}
-        @include('calendars.month', ['allDates' => $allDates])
-        {!! Form::close() !!}
+        <div class="row">
+            <div class="col-3">
+                @include('コント名', [引き渡す値])
+            </div>
+            <div class="col-9">
+                {{--var_dump($users)--}}
+                {{--var_dump($paid_vacations)--}}
+                {!!Form::open(['route'=>'paidVacation.store'])!!}
+                @include('calendars.month', ['allDates' => $allDates])
+                {!! Form::close() !!}
+            </div>
     @else
         <div class="center jumbotron">
             <div class="text-center">

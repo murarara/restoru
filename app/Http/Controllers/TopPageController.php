@@ -14,6 +14,7 @@ use \Yasumi\Yasumi;
 use Carbon\Carbon;
 
 use App\PaidVacation;
+use App\Post;
 
 class TopPageController extends Controller
 {
@@ -178,7 +179,20 @@ class TopPageController extends Controller
         return view('admins.susume', ['user'=>$user, 'months'=>$months]);
     }
     
-    public function susume_post(){
+    public function susume_post(Request $request){
+        
+        if (Auth::check()) {
+            $month = $request->month;
+            $content = $request->content;
+            $user_id = Auth::user()->id;
+            
+            Post::create([
+                    'user_id' => $user_id,
+                    'content' => $content,
+                    'month' => $month,
+                ]);
+        }
+        
         return back();
     }
 }
